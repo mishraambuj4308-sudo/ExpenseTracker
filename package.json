@@ -1,0 +1,23 @@
+{
+  "name": "expense-tracker",
+  "version": "2.0.0",
+  "description": "Expense & Budget Management System — Full-featured expense tracker with authentication, budgets, analytics, and premium UI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node seed.js"
+  },
+  "keywords": ["expense", "tracker", "budget", "finance", "management"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.1.3"
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Expense & Budget Management System — Track expenses, set budgets, analyze spending with beautiful charts.">
+  <title>ExpenseFlow — Smart Expense & Budget Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ===== AUTH PAGE ===== -->
+  <div id="authPage" class="auth-wrapper">
+    <div class="auth-card">
+      <h1 id="authTitle">Welcome to <span>ExpenseFlow</span></h1>
+      <p class="subtitle" id="authSubtitle">Sign in to manage your finances</p>
+      <form id="authForm">
+        <div class="form-group hidden" id="nameGroup">
+          <label for="authName">Full Name</label>
+          <input type="text" id="authName" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label for="authEmail">Email</label>
+          <input type="email" id="authEmail" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="authPassword">Password</label>
+          <input type="password" id="authPassword" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" id="authSubmitBtn">Sign In</button>
+      </form>
+      <p style="text-align:center;margin-top:1.2rem;font-size:.85rem;color:var(--text-secondary)">
+        <span id="authToggleText">Don't have an account?</span>
+        <span class="toggle-link" id="authToggle">Sign Up</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== MAIN APP ===== -->
+  <div id="appPage" class="hidden">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <div class="logo">💸 <span>ExpenseFlow</span></div>
+      <button class="hamburger" id="menuToggle">☰</button>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="app-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">💸 <span>ExpenseFlow</span></div>
+        <nav class="sidebar-nav">
+          <div class="nav-item active" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</div>
+          <div class="nav-item" data-page="transactions"><span class="nav-icon">💳</span> Transactions</div>
+          <div class="nav-item" data-page="budgets"><span class="nav-icon">🎯</span> Budgets</div>
+          <div class="nav-item" data-page="reports"><span class="nav-icon">📈</span> Reports</div>
+          <div class="nav-item" data-page="categories"><span class="nav-icon">📁</span> Categories</div>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <div class="user-avatar" id="userAvatar">U</div>
+            <div>
+              <div class="user-name" id="userName">User</div>
+              <div class="user-email" id="userEmail">user@email.com</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm btn-full" style="margin-top:.8rem" id="logoutBtn">🚪 Logout</button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content" id="mainContent">
+        <!-- Pages rendered dynamically by JS -->
+      </main>
+    </div>
+  </div>
+
+  <!-- ===== MODAL CONTAINER ===== -->
+  <div id="modalContainer"></div>
+
+  <script src="api.js"></script>
+  <script src="pages.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
