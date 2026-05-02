@@ -38,14 +38,18 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// Connect to MongoDB and start server
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log('✅ Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.error('❌ MongoDB connection error:', err.message);
-  });
+// Connect to MongoDB
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+      console.log('✅ Connected to MongoDB');
+    })
+    .catch((err) => {
+      console.error('❌ MongoDB connection error:', err.message);
+    });
+} else {
+  console.error('❌ MONGODB_URI environment variable is not set');
+}
 
 // Export the app for Vercel
 module.exports = app;
