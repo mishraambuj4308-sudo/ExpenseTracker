@@ -28,7 +28,7 @@ app.use('/api/budgets', budgetRoutes);
 app.use('/api/categories', categoryRoutes);
 
 // SPA fallback — serve index.html for all non-API routes
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
@@ -51,9 +51,12 @@ if (process.env.MONGODB_URI) {
   console.error('❌ MONGODB_URI environment variable is not set');
 }
 
-// Export the app for Vercel
-module.exports = app;
-    process.exit(1);
+// Start the server (if not being required as a module)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
   });
+}
 
+// Export the app for Vercel or testing
 module.exports = app;
