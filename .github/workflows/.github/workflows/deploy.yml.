@@ -1,0 +1,38 @@
+
+name: ExpenseTracker Backend Deployment
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, x64]
+
+    steps:
+      - name: Check server tools
+        run: |
+          node -v
+          npm -v
+          git --version
+
+      - name: Clone or update ExpenseTracker
+        run: |
+          if [ -d "$HOME/ExpenseTracker/.git" ]; then
+            cd "$HOME/ExpenseTracker"
+            git fetch origin master
+            git reset --hard origin/master
+          else
+            git clone \
+              https://github.com/mishraambuj4308-sudo/ExpenseTracker.git \
+              "$HOME/ExpenseTracker"
+          fi
+
+      - name: Install dependencies
+        run: |
+          cd "$HOME/ExpenseTracker"
+          npm ci
